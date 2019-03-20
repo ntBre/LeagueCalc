@@ -10,3 +10,4 @@ tar_output="$tar_base$1$end"
 
 curl -O $output
 tar -xzvf $tar_output
+./populate_script.py $1

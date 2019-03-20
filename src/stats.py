@@ -8,7 +8,7 @@ import subprocess
 @app.route('/stats', methods=['GET'])
 def stats():
     champ_name = "Aatrox"
-    level = 13
+    level = 18
     runes = {}
     items = {}
     champ = json.loads(open("./champions/Aatrox.json").read())
@@ -33,7 +33,7 @@ def level_up_stats(input_champ, level):
     for attribute in input_champ.keys(): 
         if attribute in level_stats:
             scaling = attribute + "perlevel"
-            output_champ[attribute] = input_champ[attribute] + (input_champ[scaling]*level)
+            output_champ[attribute] = input_champ[attribute] + (input_champ[scaling] * (level-1))
         else:
             output_champ[attribute] = input_champ[attribute]
 
