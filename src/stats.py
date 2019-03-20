@@ -11,31 +11,29 @@ def stats():
     level = 18
     runes = {}
     items = {}
-    champ = json.loads(open("./champions/Aatrox.json").read())
+    champ = json.loads(open("../champions/Aatrox.json").read())
     champ = level_up_stats(champ, level)
     return json.dumps(champ)
 
 def level_up_stats(input_champ, level):
-    output_champ = {
-    "armor":"armorperlevel", 
-    "attackdamage":"attackdamageperlevel",
-    "hp":"hpperlevel",
-    "mp":"mpperlevel", 
-    "spellblock":"spellblockperlevel", 
-    "hpregen":"hpregenperlevel", 
-    "mpregen":"mpregenperlevel", 
-    "movespeed":None,
-    "crit":None,
-    "attackspeed":None
-    } 
+    # output_champ = {
+    # "armor":"armorperlevel", 
+    # "attackdamage":"attackdamageperlevel",
+    # "hp":"hpperlevel",
+    # "mp":"mpperlevel", 
+    # "spellblock":"spellblockperlevel", 
+    # "hpregen":"hpregenperlevel", 
+    # "mpregen":"mpregenperlevel", 
+    # "movespeed":None,
+    # "crit":None,
+    # "attackspeed":None
+    # } 
+    output_champ = input_champ
     # stats that level up
     level_stats = ["armor", "hp", "attackdamage", "mp", "spellblock", "mpregen", "hpregen", "attackspeed"]
-    for attribute in input_champ.keys(): 
-        if attribute in level_stats:
-            scaling = attribute + "perlevel"
-            output_champ[attribute] = input_champ[attribute] + (input_champ[scaling] * (level-1))
-        else:
-            output_champ[attribute] = input_champ[attribute]
+    for stat in level_stats: 
+        scaling = stat + "perlevel"
+        output_champ[stat] = input_champ[stat] + (input_champ[scaling] * (level-1))
 
     return output_champ
             
