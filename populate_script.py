@@ -11,11 +11,9 @@ def main():
 
 def print_to_file(champ_name):
     out_dict = {}
-    new_dict = {}
     for stat in jdata['data'][champ_name]['stats']:
         out_dict[stat] = jdata['data'][champ_name]['stats'][stat]
-    new_dict[champ_name] = out_dict
-    write_to_file(champ_name, new_dict)
+    write_to_file(champ_name, out_dict)
 
 def write_to_file(champ_name, out_dict):
     out_json = json.dump(out_dict, open("./champions/" + champ_name + ".json", 'w'))
